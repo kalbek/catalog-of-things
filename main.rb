@@ -5,14 +5,14 @@ def run
   loop do
     display_menu
     print "\nEnter your choice: "
-    choice = gets.chomp.to_i
-    if [1, 5, 7].include?(choice)
+    choice = gets.chomp
+    if %w[1 5 7].include?(choice)
       book_options(choice)
-    elsif [2, 4, 8].include?(choice)
+    elsif %w[2 4 8].include?(choice)
       music_options(choice)
-    elsif [3, 6, 9].include?(choice)
+    elsif %w[3 6 9].include?(choice)
       game_options(choice)
-    elsif choice.zero?
+    elsif choice == '0'
       puts 'Thank you for using this app!'
       exit!
     else
@@ -31,16 +31,6 @@ end
 
 def game_options(_choice)
   puts 'running game options'
-end
-
-def exit(choice)
-  case choice
-  when 0
-    puts 'Thank you for using this app!'
-    exit!
-  else
-    puts 'Invalid choice. Please try again.'
-  end
 end
 
 def display_menu
