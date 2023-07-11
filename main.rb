@@ -6,11 +6,12 @@ def run
     display_menu
     print "\nEnter your choice: "
     choice = input_valid_integer_input
-    if %w[1 5 7 0].map(&:to_i).include?(choice)
+    case choice
+    when 1, 5, 7, 0
       book_options(choice)
-    elsif %w[2 4 8].map(&:to_i).include?(choice)
+    when 2, 4, 8
       music_options(choice)
-    elsif %w[3 6 9].map(&:to_i).include?(choice)
+    when 3, 6, 9
       game_options(choice)
     else
       puts 'Invalid input!'
@@ -28,23 +29,37 @@ end
 def book_options(choice)
   case choice
   when 1
-    puts 'one'
+    puts '1 - List all books' # books
   when 5
-    puts 'five'
+    puts "5 - List all labels (e.g. 'Gift', 'New')" # books
   when 7
-    puts 'seven'
+    puts '7 - Add a book' # books
   when 0
     puts 'Thank you for using this app!'
     exit!
   end
 end
 
-def music_options(_choice)
-  puts 'running music options'
+def music_options(choice)
+  case choice
+  when 2
+    puts '2 - List all music albums' # music
+  when 4
+    puts "4 - List all genres (e.g 'Comedy', 'Thriller')" # music
+  when 8
+    puts '8 - Add a music album' # music
+  end
 end
 
-def game_options(_choice)
-  puts 'running game options'
+def game_options(choice)
+  case choice
+  when 3
+    puts '3 - List of games' # games
+  when 6
+    puts "6 - List all authors (e.g. 'Stephen King')" # games
+  when 9
+    puts '9 - Add a game' # games
+  end
 end
 
 def display_menu
