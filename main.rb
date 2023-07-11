@@ -5,24 +5,38 @@ def run
   loop do
     display_menu
     print "\nEnter your choice: "
-    choice = gets.chomp
-    if %w[1 5 7].include?(choice)
+    choice = input_valid_integer_input
+    if %w[1 5 7 0].map(&:to_i).include?(choice)
       book_options(choice)
-    elsif %w[2 4 8].include?(choice)
+    elsif %w[2 4 8].map(&:to_i).include?(choice)
       music_options(choice)
-    elsif %w[3 6 9].include?(choice)
+    elsif %w[3 6 9].map(&:to_i).include?(choice)
       game_options(choice)
-    elsif choice == '0'
-      puts 'Thank you for using this app!'
-      exit!
     else
       puts 'Invalid input!'
     end
   end
 end
 
-def book_options(_choice)
-  puts 'running books options'
+def input_valid_integer_input
+  input = gets.chomp
+  Integer(input)
+rescue ArgumentError
+  nil
+end
+
+def book_options(choice)
+  case choice
+  when 1
+    puts 'one'
+  when 5
+    puts 'five'
+  when 7
+    puts 'seven'
+  when 0
+    puts 'Thank you for using this app!'
+    exit!
+  end
 end
 
 def music_options(_choice)
