@@ -5,7 +5,7 @@ def run
   loop do
     display_menu
     print "\nEnter your choice: "
-    choice = input_valid_integer_input
+    choice = valid_integer_input
     case choice
     when 1, 5, 7, 0
       book_options(choice)
@@ -19,7 +19,7 @@ def run
   end
 end
 
-def input_valid_integer_input
+def valid_integer_input
   input = gets.chomp
   Integer(input)
 rescue ArgumentError
