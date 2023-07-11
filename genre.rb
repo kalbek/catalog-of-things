@@ -5,7 +5,7 @@ class Genre < Item
   attr_reader :id, :items
 
   def initialize(id, name)
-    super
+    super()
     @id = id || Random.rand(1..100)
     @name = name
     @items = []
