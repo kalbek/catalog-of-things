@@ -3,7 +3,7 @@ require 'date'
 
 RSpec.describe MusicAlbum do
   let(:album_id) { 1 }
-  let(:album_publish_date) { Date.today - 15 * 365 }
+  let(:album_publish_date) { Date.today - (15 * 365) }
   let(:album_on_spotify) { true }
   let(:album) { MusicAlbum.new(album_id, album_publish_date, album_on_spotify) }
 
