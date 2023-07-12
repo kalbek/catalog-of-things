@@ -1,5 +1,6 @@
 require_relative 'item'
 require_relative 'book'
+require_relative 'label'
 
 def run
   puts 'Welcome to catalog of things!!'
@@ -30,11 +31,11 @@ end
 def book_options(choice)
   case choice
   when 1
-    puts '1 - List all books' # books
+    Book.list_all_books
   when 5
-    puts "5 - List all labels (e.g. 'Gift', 'New')" # books
+    Label.list_all
   when 7
-    Book.add_a_book
+    Book.add_book
   when 0
     puts 'Thank you for using this app!'
     exit!

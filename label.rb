@@ -17,6 +17,14 @@ class Label
     add_items_to_file(item)
   end
 
+  def to_json(*_args)
+    {
+      'id' => id,
+      'title' => title,
+      'color' => color
+    }.to_json
+  end
+
   def add_items_to_file(items)
     loaded_items = load_items_data
     loaded_items << items
@@ -25,9 +33,18 @@ class Label
         'id' => item.id,
         'publish_date' => item.publish_date,
         'archived' => item.archived,
-        'label' => item.label
+        'label' => if item.label.is_a?(Hash)
+                     item.label
+                   else
+                     {
+                       'id' => item.label.id,
+                       'title' => item.label.title,
+                       'color' => item.label.color
+                     }
+                   end
       }
     end
+    puts item_data
     File.write('items.json', JSON.generate(item_data))
   end
 
@@ -37,6 +54,14 @@ class Label
     labels.each do |label|
       puts "id: #{label[:id]} title: #{label[:title]}, label-color: #{label[:color]}"
     end
+  end
+
+  def convert_to_hash
+    {
+      'id' => id,
+      'title' => title,
+      'color' => color
+    }
   end
 
   def save_labels_to_file(labels)
@@ -50,7 +75,7 @@ class Label
     File.write('labels.json', JSON.generate(label_data))
   end
 
-  def self.load_labels_data
+  def self.load_labels
     return [] unless File.exist?('labels.json') && !File.empty?('labels.json')
 
     label_data = JSON.parse(File.read('labels.json'))

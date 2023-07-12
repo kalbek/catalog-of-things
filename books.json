@@ -1,9 +1,9 @@
 [
   {
     "id": 1,
-    "publisher": "Sun publishers",
-    "publish_date": "2023-07-12",
-    "cover_state": "good",
-    "label": {}
+    "publisher": "fasdf",
+    "publish_date": "2023-07-11",
+    "cover_state": "fasdf",
+    "label": { "id": 1, "title": "fasdf", "color": "fasdf" }
   }
 ]
