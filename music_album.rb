@@ -28,31 +28,58 @@ class MusicAlbum < Item
     end
   end
 
-  def self.get_album_details
-    puts 'Enter genre (e.g "Comedy", "Thriller"): '
-    genre = gets.chomp
-    puts 'Is it on spotify?(y/n): '
+  def self.types
+    {
+      0 => 'Pop',
+      1 => 'Rock',
+      2 => 'Hip Hop',
+      3 => 'Dance/Electronic',
+      4 => 'R&B',
+      5 => 'Country',
+      6 => 'Acoustic',
+      7 => 'Classical',
+      8 => 'Metal',
+      9 => 'Jazz',
+      10 => 'Blues'
+    }
+  end
+
+  def self.list_genres
+    puts "\n|--------List of Genres--------|\n\n"
+    genres = types
+    genres.keys.each do |key|
+      puts "#{key}: #{genres[key]}"
+    end
+    print "\nChoose a genre by index(e.g 0 / 1 / 2):"
+    choice = gets.chomp.to_i
+    return genres[choice] if genres.keys.include?(choice)
+
+    puts 'Please enter a valid choice!'
+    list_of_genres
+  end
+
+  def self.album_details
+    genre = list_genres
+    print 'Is it on spotify?(y/n): '
     ans = gets.chomp
-    puts 'Enter date: '
+    print 'Enter date(yyyy/mm/dd): '
     date = validate_date
-    saved_albums = load_albums
     id = load_albums.length + 1
 
-    details = {
+    {
       id: id,
-      on_spotify: ans == 'yes' || ans == 'y' ? true : false,
+      on_spotify: %w[yes YES Yes y Y].include?(ans),
       date: date,
       genre_name: genre
     }
-    details
   end
 
   def self.add_album
-    album_details = get_album_details
-    id = album_details[:id]
-    date = album_details[:date]
-    name = album_details[:genre_name]
-    on_spotify = album_details[:on_spotify]
+    details = album_details
+    id = details[:id]
+    date = details[:date]
+    name = details[:genre_name]
+    on_spotify = details[:on_spotify]
 
     album = MusicAlbum.new(id, date, on_spotify)
     genre = Genre.new(id, date, name)
@@ -85,7 +112,7 @@ class MusicAlbum < Item
   end
 
   def self.load_albums
-    return [] unless File.exist?('albums.json') && !File.zero?('albums.json')
+    return [] unless File.exist?('albums.json') && !File.empty?('albums.json')
 
     albums_data = JSON.parse(File.read('albums.json'))
     albums_data.map do |data|
@@ -100,9 +127,14 @@ class MusicAlbum < Item
   def self.list_music_albums
     puts "|-------All Albumbs-------|\n"
     albums = load_albums
-    puts "No albums added." if albums.empty?
+    puts 'No albums added.' if albums.empty?
     albums.each do |album|
-      puts "ID: #{album.id}, Date: #{album.publish_date}, Genre: #{album.genre.name}, Archived: #{album.archived ? 'Yes' : 'No'}, On_Spotify: #{album.on_spotify ? 'Yes' : 'No'}"
+      result = "ID: #{album.id}, "
+      result += "Date: #{album.publish_date}, "
+      result += "Genre: #{album.genre.name}, "
+      result += "Archived: #{album.archived ? 'Yes' : 'No'}, "
+      result += "On_Spotify: #{album.on_spotify ? 'Yes' : 'No'}"
+      puts result
     end
   end
 
