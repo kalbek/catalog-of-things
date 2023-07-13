@@ -45,7 +45,6 @@ class Label
                    end
       }
     end
-    puts item_data
     File.write('items.json', JSON.generate(item_data))
   end
 
