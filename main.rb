@@ -47,9 +47,13 @@ def music_options(choice)
     MusicAlbum.list_music_albums
   when 4
     puts "4 - List all genres (e.g 'Comedy', 'Thriller')" # music
+    Genre.list_all_genres
   when 8
     puts '8 - Add a music album' # music
     MusicAlbum.add_album
+  when 0
+    puts 'Thank you for using this app!'
+    exit!
   end
 end
 
