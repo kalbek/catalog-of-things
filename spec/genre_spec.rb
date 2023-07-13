@@ -22,7 +22,7 @@ RSpec.describe Genre do
     let(:item) { double('Item') }
     let(:new_genre) { Genre.new(2, Date.today, 'Sci-Fi') }
     let(:new_item) { double('Item') }
-  
+
     before do
       allow(existing_genre).to receive(:add_item).with(new_item)
       allow(Genre).to receive(:load_genres).and_return([existing_genre])
@@ -31,14 +31,13 @@ RSpec.describe Genre do
       allow(File).to receive(:read).with('genres.json').and_return('[]')
       allow(File).to receive(:write).with('genres.json', anything)
     end
-  
+
     it 'creates a new genre and adds the item if a similar genre does not exist' do
       allow(Genre).to receive(:load_genres).and_return([])
       expect(Genre).to receive(:save_genres_to_file)
       Genre.add_genre(new_genre)
     end
   end
-
 
   describe '.load_genres' do
     let(:genre_data) { [{ 'id' => 1, 'date' => '2023-07-12', 'name' => 'Fantasy', 'items' => [] }] }
