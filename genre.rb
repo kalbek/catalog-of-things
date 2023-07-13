@@ -15,4 +15,14 @@ class Genre < Item
     @items << item
     item.genre = self
   end
+
+  def self.add_genre(genre)
+    puts genre
+  end
+
+  def self.list_all_genres
+    MusicAlbum.load_albums
+    puts 'No genres added.'
+    puts @items
+  end
 end
