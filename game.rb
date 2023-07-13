@@ -21,9 +21,8 @@ class Game < Item
   # end
 
   def add_item(item)
-    item.author = self.author
+    item.author = author
   end
-
 
   def self.validate_date
     date_input = gets.chomp
