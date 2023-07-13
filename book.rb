@@ -18,7 +18,7 @@ class Book < Item
   end
 
   def can_be_archived?
-    super && cover_state == 'bad'
+    super || cover_state == 'bad'
   end
 
   def update_archived_status
@@ -115,6 +115,7 @@ class Book < Item
         'publisher' => book.publisher,
         'publish_date' => book.publish_date,
         'cover_state' => book.cover_state,
+        'archived' => book.archived,
         'label' => book.label.is_a?(Hash) ? book.label : book.label.convert_to_hash
       }
     end
