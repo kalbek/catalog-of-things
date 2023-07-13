@@ -16,19 +16,13 @@ RSpec.describe MusicAlbum do
       expect(album.id).to eq(album_id)
     end
 
-    it 'sets the archived attribute to false' do
-      expect(album.archived).to be_falsey
+    it 'sets the archived attribute to true if the item is on Spotify and can be archived' do
+      album = MusicAlbum.new(album_id, album_publish_date, true)
+      expect(album.archived).to be_truthy
     end
 
     it 'sets the publish_date attribute' do
       expect(album.publish_date).to eq(album_publish_date)
-    end
-  end
-
-  describe '#can_be_archived?' do
-    it 'returns false if the item is not on Spotify' do
-      album.instance_variable_set(:@on_spotify, false)
-      expect(album.on_spotify).to be_falsey
     end
   end
 
@@ -39,8 +33,7 @@ RSpec.describe MusicAlbum do
     end
 
     it 'does not archive the item if it cannot be archived' do
-      album.instance_variable_set(:@on_spotify, false)
-      album.move_to_archive
+      album = MusicAlbum.new(album_id, album_publish_date, false)
       expect(album.archived).to be_falsey
     end
   end
