@@ -16,10 +16,6 @@ class Game < Item
     @author = author
   end
 
-  # def add_item(item)
-  #   item.author = author
-  # end
-
   def add_item(item)
     item.author = author
   end
