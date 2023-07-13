@@ -2,7 +2,6 @@ require_relative 'item'
 require_relative 'book'
 require_relative 'game'
 require_relative 'author'
-require_relative 'book'
 require_relative 'music_album'
 
 def run
@@ -87,4 +86,3 @@ def display_menu
   puts '0 - Quit'
 end
 run
-
