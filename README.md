@@ -29,7 +29,7 @@ This repository contains ruby files with ruby code.
 
 ## 🛠 Built With <a name="built-with">Ruby</a>
 
-## 🛠 [Link to video walkthough]() <a name="built-with">Ruby</a>
+## 🛠 [Link to video walkthough](https://drive.google.com/file/d/1hh_I7Kxt2sTZK_Na-jkajlfBCPHKUN_e/view?usp=sharing) <a name="built-with">Ruby</a>
 
 ### Tech Stack <a name="tech-stack">Ruby</a>
 
