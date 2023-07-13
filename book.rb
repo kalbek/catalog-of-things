@@ -1,4 +1,7 @@
 require_relative 'item'
+require_relative 'label'
+require 'date'
+require 'json'
 
 class Book < Item
   attr_accessor :publisher, :cover_state, :publish_date

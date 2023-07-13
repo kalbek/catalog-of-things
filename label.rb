@@ -48,4 +48,51 @@ class Label
     puts item_data
     File.write('items.json', JSON.generate(item_data))
   end
+
+  def self.list_all
+    puts 'All Labels:'
+    labels = JSON.parse(File.read('labels.json'), symbolize_names: true)
+    labels.each do |label|
+      puts "id: #{label[:id]} title: #{label[:title]}, label-color: #{label[:color]}"
+    end
+  end
+
+  def convert_to_hash
+    {
+      'id' => id,
+      'title' => title,
+      'color' => color
+    }
+  end
+
+  def save_labels_to_file(labels)
+    label_data = labels.map do |label|
+      {
+        'id' => label.id,
+        'title' => label.title,
+        'color' => label.color
+      }
+    end
+    File.write('labels.json', JSON.generate(label_data))
+  end
+
+  def self.load_labels
+    return [] unless File.exist?('labels.json') && !File.empty?('labels.json')
+
+    label_data = JSON.parse(File.read('labels.json'))
+    label_data.map do |label|
+      Label.new(label['id'], label['title'], label['color'])
+    end
+  end
+
+  def load_items_data
+    return [] unless File.exist?('items.json') && !File.empty?('items.json')
+
+    item_data = JSON.parse(File.read('items.json'))
+    item_data.map do |data|
+      item = Item.new(data['id'], data['publish_date'], data['archived'])
+      item.label = data['label']
+      item
+    end
+  end
 end
