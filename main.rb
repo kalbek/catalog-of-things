@@ -1,5 +1,5 @@
 require_relative 'item'
-require_relative 'book'
+# require_relative 'book'
 require_relative 'game'
 require_relative 'author'
 require_relative 'music_album'
