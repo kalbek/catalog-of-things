@@ -68,7 +68,6 @@ class Book < Item
     book_data = book_details
     load_books
 
-
     data = update_loaded_data(book_data)
 
     book = data[:book]
