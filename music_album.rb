@@ -126,7 +126,7 @@ class MusicAlbum < Item
   end
 
   def self.list_music_albums
-    puts "|-------All Albumbs-------|\n"
+    puts "\n|-------All Albumbs-------|\n\n"
     albums = load_albums
     puts 'No albums added.' if albums.empty?
     albums.each do |album|

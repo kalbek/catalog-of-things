@@ -38,14 +38,19 @@ class Genre < Item
   end
 
   def self.list_all_genres
-    MusicAlbum.load_albums
-    puts 'No genres added.'
-    puts @items
+    puts "\n|-------All Genres-------|\n\n"
+    genres = load_genres
+    puts 'No genres added.' if genres.empty?
+    genres.each do |genre|
+      result = "ID: #{genre.id}, "
+      result += "Date: #{genre.publish_date}, "
+      result += "Genre: #{genre.name}"
+      puts result
+    end
   end
 
   def self.to_hash(arr)
     arr.map do |each|
-      puts "to_hash: #{each}"
       {
         id: each.id,
         date: each.publish_date,
