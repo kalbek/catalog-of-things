@@ -21,20 +21,16 @@ class Genre < Item
   def self.add_genre(genre)
     updated = false
     genres = load_genres
-    # should not add a simillar genre
-    genres_update = genres.map do |each|
-      if each.name == genre.items[0].genre.name
-        each.items << genre.items[0]
-        updated = true
-      end
-      each
+    existing_genre = genres.find { |g| g.name == genre.name }
+
+    if existing_genre
+      existing_genre.add_item(genre.items[0])
+      updated = true
     end
-    if updated
-      save_genres_to_file(genres_update)
-    else
-      genres << genre
-      save_genres_to_file(genres)
-    end
+
+    genres << genre unless updated
+
+    save_genres_to_file(genres)
   end
 
   def self.list_all_genres
