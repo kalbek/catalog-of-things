@@ -1,4 +1,5 @@
 require_relative 'item'
+require_relative 'music_album'
 
 def run
   puts 'Welcome to catalog of things!!'
@@ -43,11 +44,16 @@ end
 def music_options(choice)
   case choice
   when 2
-    puts '2 - List all music albums' # music
+    MusicAlbum.list_music_albums
   when 4
     puts "4 - List all genres (e.g 'Comedy', 'Thriller')" # music
+    Genre.list_all_genres
   when 8
     puts '8 - Add a music album' # music
+    MusicAlbum.add_album
+  when 0
+    puts 'Thank you for using this app!'
+    exit!
   end
 end
 
