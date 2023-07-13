@@ -85,6 +85,7 @@ class MusicAlbum < Item
     genre = Genre.new(id, date, name)
     album.genre = genre
     genre.add_item(album)
+    Genre.add_genre(genre)
 
     save_album(album)
   end
