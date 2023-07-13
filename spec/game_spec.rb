@@ -9,7 +9,7 @@ RSpec.describe Game do
 
     it 'sets the author on the item' do
       expect(item).to receive(:author=).with(author)
-      game.add_item(item)
+      game.add_item(item, author)
     end
   end
 
