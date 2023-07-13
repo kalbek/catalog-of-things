@@ -67,7 +67,4 @@ RSpec.describe Label do
       end
     end
   end
-
-
-  # Add more tests for other private methods
 end

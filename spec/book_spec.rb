@@ -110,10 +110,10 @@ RSpec.describe Book do
       before do
         allow(File).to receive(:exist?).with('books.json').and_return(true)
         allow(File).to receive(:empty?).with('books.json').and_return(false)
-        allow(File).to receive(:read).with('books.json').and_return('[{ "id": 1, "publisher": "Publisher", '\ 
-                                                                    '"publish_date": "2023-07-13",'\ 
-                                                                    '"cover_state": "bad", '\ 
-                                                                    '"label": { "title": "Label Title", '\ 
+        allow(File).to receive(:read).with('books.json').and_return('[{ "id": 1, "publisher": "Publisher", ' \
+                                                                    '"publish_date": "2023-07-13", ' \
+                                                                    '"cover_state": "bad", ' \
+                                                                    '"label": { "title": "Label Title", ' \
                                                                     '"color": "Label Color" } }]')
       end
 
