@@ -13,4 +13,12 @@ class Book < Item
     @label = label
     update_archived_status
   end
+
+  def can_be_archived?
+    super && cover_state == 'bad'
+  end
+
+  def update_archived_status
+    @archived = can_be_archived?
+  end
 end
