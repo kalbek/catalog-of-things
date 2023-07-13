@@ -98,8 +98,8 @@ RSpec.describe Book do
       expect(File).to receive(:write).with('books.json',
                                            JSON.generate([{ 'id' => 1, 'publisher' => 'Publisher',
                                                             'publish_date' => Date.today, 'cover_state' => 'bad',
-                                                            'label' => { title: 'Label Title',
-                                                                         color: 'Label Color' } }]))
+                                                            'archived' => true, 'label' => { title: 'Label Title',
+                                                                                             color: 'Label Color' } }]))
 
       Book.save_books_to_json(books)
     end
