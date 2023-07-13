@@ -1,4 +1,6 @@
 require_relative 'item'
+require_relative 'game'
+require_relative 'author'
 
 def run
   puts 'Welcome to catalog of things!!'
@@ -54,11 +56,11 @@ end
 def game_options(choice)
   case choice
   when 3
-    puts '3 - List of games' # games
+    Game.list_all_games
   when 6
-    puts "6 - List all authors (e.g. 'Stephen King')" # games
+    Author.list_all_authors
   when 9
-    puts '9 - Add a game' # games
+    Game.add_a_game
   end
 end
 
