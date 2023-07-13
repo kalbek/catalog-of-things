@@ -1,6 +1,10 @@
 require_relative 'item'
+require_relative 'book'
 require_relative 'game'
 require_relative 'author'
+
+require_relative 'item'
+require_relative 'book'
 
 def run
   puts 'Welcome to catalog of things!!'
@@ -35,7 +39,7 @@ def book_options(choice)
   when 5
     puts "5 - List all labels (e.g. 'Gift', 'New')" # books
   when 7
-    puts '7 - Add a book' # books
+    Book.add_a_book
   when 0
     puts 'Thank you for using this app!'
     exit!
@@ -79,3 +83,4 @@ def display_menu
   puts '0 - Quit'
 end
 run
+
