@@ -1,4 +1,4 @@
-require_relative 'game'
+require_relative '../game'
 
 RSpec.describe Game do
   let(:game) { Game.new(1, true, '2023-07-01', Date.today) }
