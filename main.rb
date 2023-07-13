@@ -2,7 +2,7 @@ require_relative 'item'
 require_relative 'book'
 require_relative 'label'
 require_relative 'music_album'
- 
+
 def run
   puts 'Welcome to catalog of things!!'
   loop do
